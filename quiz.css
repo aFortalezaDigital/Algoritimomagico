@@ -31,7 +31,7 @@ p {
 
 /* Botão inicial */
 .start-button {
-    background-color: #4CAF50;
+    background-color: #3F51B5; /* Azul chamativo */
     color: white;
     padding: 12px 20px;
     border: none;
@@ -43,7 +43,7 @@ p {
 }
 
 .start-button:hover {
-    background-color: #45a049;
+    background-color: #303F9F; /* Azul escuro ao passar o mouse */
 }
 
 /* Barra de progresso */
@@ -74,19 +74,21 @@ p {
 
 /* Ajuste para as opções */
 .path-option {
+    background-color: #FFC107; /* Amarelo chamativo */
+    border: 2px solid #FF9800; /* Laranja para destacar */
     text-align: center;
-    padding: 5px;
-    background-color: #f4f4f4;
+    padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
     overflow: hidden;
 }
 
 .path-option:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #FF9800; /* Laranja mais escuro ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento para chamar atenção */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Aumentar o destaque */
 }
 
 /* Imagens Responsivas */
@@ -107,7 +109,7 @@ p {
 /* Botões de pergunta */
 .quiz-button {
     display: block;
-    background-color: #2196F3;
+    background-color: #FF5722; /* Laranja vibrante */
     color: white;
     border: none;
     border-radius: 5px;
@@ -121,8 +123,8 @@ p {
 }
 
 .quiz-button:hover {
-    transform: scale(1.05);
-    background-color: #1976D2;
+    background-color: #E64A19; /* Fundo mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no hover */
 }
 
 /* Ajustes específicos para dispositivos móveis */
