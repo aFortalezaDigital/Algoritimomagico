@@ -1,0 +1,116 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f9f9;
+    color: #333;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2, p {
+    margin-bottom: 20px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+/* Botões de Escolha - Cor Azul */
+.quiz-button.blue {
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; /* Formato arredondado mais suave */
+    cursor: pointer;
+    width: 45%;
+    max-width: 300px;
+    transition: transform 0.3s, background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.quiz-button.blue:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Botões Gerais */
+.quiz-button {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; /* Formato arredondado mais suave */
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.quiz-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.cta-button {
+    background-color: #ffc107;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+/* Barra de Progresso */
+#progress-section {
+    width: 100%;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+#progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+/* Mensagens */
+#thank-you-message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #4CAF50;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .quiz-button {
+        width: 100%;  /* Torna o botão 100% da largura no celular */
+        font-size: 14px;  /* Ajusta o tamanho da fonte no celular */
+        padding: 10px 20px;  /* Ajusta o tamanho do botão */
+    }
+}
