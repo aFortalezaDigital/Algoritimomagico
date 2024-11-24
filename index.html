@@ -1,74 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transforme Sua Pele</title>
-    <link rel="stylesheet" href="landing-page.css">
+    <title>Transforme Sua Pele com Nosso Algoritmo Mágico</title>
+    <link rel="stylesheet" href="landing-page.css"> <!-- Estilos da Landing Page -->
+    <script src="landing-page.js" defer></script> <!-- Lógica da Landing Page -->
 </head>
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <h1>Descubra o Poder do Abacate para Transformar Sua Pele</h1>
-        <p>Com o nosso método exclusivo, você terá uma solução natural personalizada.</p>
+    <!-- Cabeçalho da Landing Page -->
+    <header class="landing-header">
+        <h1>Transforme Sua Pele com Nosso Algoritmo Mágico</h1>
+        <p>Descubra como milhares de pessoas estão renovando sua pele em poucos dias com uma abordagem 100% personalizada. Chega de tratamentos caros e complicados, o nosso algoritmo usa o poder do abacate para trazer resultados rápidos e eficazes.</p>
+        <button class="cta-button" onclick="startQuiz()">Quero experimentar agora!</button>
     </header>
-
-    <!-- Por que Funciona -->
-    <section class="why-it-works">
-        <h2>Por que Funciona?</h2>
-        <p>
-            O tratamento foi formulado para atender às necessidades específicas da sua pele usando o poder do abacate. Rico em nutrientes essenciais como vitaminas A, C e E, 
-            ele promove a renovação celular, hidratação profunda e equilíbrio da pele. Sem produtos caros ou agressivos, apenas soluções naturais.
-        </p>
-        <button class="expand-button" onclick="toggleWhyItWorks()">Saiba Mais</button>
-        <div id="expanded-why" style="display: none;">
-            <p>
-                Estudos mostram que o abacate ajuda a reduzir inflamações, promove firmeza e clareia manchas. Além disso, nossos métodos personalizados garantem resultados
-                específicos para o seu tipo de pele. Tudo foi pensado para trazer confiança e beleza de forma prática e acessível.
-            </p>
-        </div>
-    </section>
 
     <!-- Depoimentos -->
     <section class="testimonials">
-        <h2>O que dizem nossos clientes</h2>
-        <div class="testimonial">
-            <img src="imagens/depoimentos/foto1.jpg" alt="Depoimento de Ana" class="testimonial-image">
-            <p><strong>Ana:</strong> Nunca imaginei que algo tão simples como o abacate pudesse mudar minha pele. Adeus acne!</p>
-        </div>
-        <div class="testimonial">
-            <img src="imagens/depoimentos/foto2.jpg" alt="Depoimento de Júlia" class="testimonial-image">
-            <p><strong>Júlia:</strong> Minha pele flácida agora tem firmeza! Estou muito feliz com os resultados.</p>
-        </div>
-        <div class="testimonial">
-            <img src="imagens/depoimentos/foto3.jpg" alt="Depoimento de Carla" class="testimonial-image">
-            <p><strong>Carla:</strong> As manchas sumiram em poucas semanas. Recomendo demais!</p>
-        </div>
-        <div class="testimonial">
-            <img src="imagens/depoimentos/foto4.jpg" alt="Depoimento de Sofia" class="testimonial-image">
-            <p><strong>Sofia:</strong> Finalmente me sinto confiante sem maquiagem. As olheiras sumiram!</p>
+        <h2>Veja o que nossos usuários estão dizendo</h2>
+        <div id="testimonial-container" class="testimonial-container">
+            <!-- Depoimentos gerados dinamicamente -->
         </div>
     </section>
 
-    <!-- Call-to-Action -->
-    <section class="cta-section">
-        <h2>Pronto para começar sua transformação?</h2>
-        <button class="cta-button" onclick="window.location.href='quiz.html'">Sim, quero experimentar agora!</button>
+    <!-- Benefícios -->
+    <section class="benefits" style="background-color: #4CAF50; color: white;"> <!-- Cor verde aqui -->
+        <h2>Por Que Nosso Algoritmo Funciona?</h2>
+        <p>Nosso tratamento foi criado especialmente para você, levando em consideração as necessidades da sua pele e oferecendo a solução mais natural e eficaz. Sem precisar de produtos caros ou químicos agressivos, o segredo está no poder do abacate, um ingrediente simples, mas que proporciona muitos benefícios incríveis para a saúde da sua pele.</p>
+        
+        <!-- Botão Expandir -->
+        <button class="expand-btn" id="expand-btn">Saiba Mais</button>
+        
+        <!-- Conteúdo Expansível -->
+        <div id="expandable-content" class="expandable-content">
+            <ul>
+                <li><strong>Nutrição profunda:</strong> O abacate é repleto de ácidos graxos essenciais e antioxidantes que ajudam a hidratar e regenerar a pele, deixando-a mais saudável e com aparência jovem.</li>
+                <li><strong>Equilíbrio natural:</strong> O abacate tem poder anti-inflamatório e hidratante, controlando a oleosidade da pele e ajudando a prevenir a acne e outros problemas.</li>
+                <li><strong>Revitalização:</strong> Com vitaminas E e C, o abacate combate os radicais livres e melhora a textura da pele, sendo ótimo para manchas e flacidez.</li>
+                <li><strong>Resultados visíveis:</strong> O tratamento é rápido e natural, com resultados visíveis em poucas semanas. O poder do abacate trabalha de dentro para fora, sem precisar de tratamentos invasivos ou caros.</li>
+            </ul>
+            <p>Com o abacate, unimos ciência e natureza para oferecer o melhor tratamento para sua pele. Imagine como sua pele ficará radiante e saudável, livre de acne, manchas e flacidez. Pronto para ver essa transformação?</p>
+        </div>
     </section>
 
-    <footer>
+    <!-- Call to Action (Pronto para Começar) -->
+    <div class="cta-container">
+        <h3>Pronto para começar sua transformação?</h3>
+        <button class="cta-button" onclick="startQuiz()">Sim, quero começar agora!</button>
+    </div>
+
+    <footer class="footer">
         <p>© 2024 Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        function toggleWhyItWorks() {
-            const expanded = document.getElementById('expanded-why');
-            if (expanded.style.display === 'none') {
-                expanded.style.display = 'block';
-            } else {
-                expanded.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
+ 
