@@ -31,7 +31,7 @@ p {
 
 /* Botão inicial */
 .start-button {
-    background-color: #3F51B5; /* Azul chamativo */
+    background-color: #3F51B5; /* Azul vibrante */
     color: white;
     padding: 12px 20px;
     border: none;
@@ -43,7 +43,7 @@ p {
 }
 
 .start-button:hover {
-    background-color: #303F9F; /* Azul escuro ao passar o mouse */
+    background-color: #303F9F; /* Azul mais escuro no hover */
 }
 
 /* Barra de progresso */
@@ -59,7 +59,7 @@ p {
 .progress-bar {
     height: 100%;
     width: 0;
-    background-color: #4CAF50;
+    background-color: #2196F3; /* Azul progressivo */
     transition: width 0.3s ease;
 }
 
@@ -74,21 +74,21 @@ p {
 
 /* Ajuste para as opções */
 .path-option {
-    background-color: #FFC107; /* Amarelo chamativo */
-    border: 2px solid #FF9800; /* Laranja para destacar */
+    background-color: #2196F3; /* Azul forte */
+    border: 2px solid #1976D2; /* Azul mais escuro para borda */
     text-align: center;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
     cursor: pointer;
     overflow: hidden;
 }
 
 .path-option:hover {
-    background-color: #FF9800; /* Laranja mais escuro ao passar o mouse */
-    transform: scale(1.1); /* Leve aumento para chamar atenção */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Aumentar o destaque */
+    background-color: #1976D2; /* Azul mais escuro no hover */
+    transform: scale(1.1); /* Leve aumento ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Destaque extra */
 }
 
 /* Imagens Responsivas */
@@ -109,7 +109,7 @@ p {
 /* Botões de pergunta */
 .quiz-button {
     display: block;
-    background-color: #FF5722; /* Laranja vibrante */
+    background-color: #3F51B5; /* Azul vibrante */
     color: white;
     border: none;
     border-radius: 5px;
@@ -123,7 +123,7 @@ p {
 }
 
 .quiz-button:hover {
-    background-color: #E64A19; /* Fundo mais escuro ao passar o mouse */
+    background-color: #303F9F; /* Azul mais escuro ao passar o mouse */
     transform: scale(1.05); /* Leve aumento no hover */
 }
 
