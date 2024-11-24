@@ -3,67 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Diagnóstico</title>
-    <link rel="stylesheet" href="quiz.css">
+    <title>Transforme Sua Pele</title>
+    <link rel="stylesheet" href="landing-page.css">
 </head>
 <body>
-    <main class="quiz-section">
-        <!-- Introdução -->
-        <section id="intro-section">
-            <h1>Descubra o Melhor Tratamento para Sua Pele</h1>
-            <p>Responda algumas perguntas simples e diremos qual solução é perfeita para você!</p>
-            <button class="start-button" onclick="startQuiz()">Começar Agora</button>
-        </section>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Descubra o Poder do Abacate para Transformar Sua Pele</h1>
+        <p>Com o nosso método exclusivo, você terá uma solução natural personalizada.</p>
+    </header>
 
-        <!-- Escolha do problema -->
-        <section id="problem-selection" style="display: none;">
-            <h2>Qual problema você gostaria de resolver?</h2>
-            <div id="problem-options" class="path-selection">
-                <div class="path-option" onclick="choosePath('acne')">
-                    <img src="imagens/acne.jpg" alt="Acne" class="path-image">
-                    <p>Acne/Espinhas</p>
-                </div>
-                <div class="path-option" onclick="choosePath('flacidez')">
-                    <img src="imagens/flacidez.jpg" alt="Pele Flácida" class="path-image">
-                    <p>Pele Flácida</p>
-                </div>
-                <div class="path-option" onclick="choosePath('manchas')">
-                    <img src="imagens/manchas.jpg" alt="Manchas na Pele" class="path-image">
-                    <p>Manchas na Pele</p>
-                </div>
-                <div class="path-option" onclick="choosePath('olheiras')">
-                    <img src="imagens/olheiras.jpg" alt="Olheiras" class="path-image">
-                    <p>Olheiras</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Perguntas -->
-        <section id="question-section" style="display: none;">
-            <h2 id="question-text"></h2>
-            <div id="answers-container" class="quiz-options"></div>
-            <div id="thank-you-message" style="display: none;"></div>
-        </section>
-
-        <!-- Barra de progresso -->
-        <div id="progress-section" style="display: block;">
-            <div id="progress-bar"></div>
+    <!-- Por que Funciona -->
+    <section class="why-it-works">
+        <h2>Por que Funciona?</h2>
+        <p>
+            O tratamento foi formulado para atender às necessidades específicas da sua pele usando o poder do abacate. Rico em nutrientes essenciais como vitaminas A, C e E, 
+            ele promove a renovação celular, hidratação profunda e equilíbrio da pele. Sem produtos caros ou agressivos, apenas soluções naturais.
+        </p>
+        <button class="expand-button" onclick="toggleWhyItWorks()">Saiba Mais</button>
+        <div id="expanded-why" style="display: none;">
+            <p>
+                Estudos mostram que o abacate ajuda a reduzir inflamações, promove firmeza e clareia manchas. Além disso, nossos métodos personalizados garantem resultados
+                específicos para o seu tipo de pele. Tudo foi pensado para trazer confiança e beleza de forma prática e acessível.
+            </p>
         </div>
+    </section>
 
-        <!-- Analisando -->
-        <section id="analyzing-section" style="display: none;">
-            <h2>Analisando suas respostas...</h2>
-            <p>Aguarde enquanto definimos o melhor plano para você.</p>
-        </section>
+    <!-- Depoimentos -->
+    <section class="testimonials">
+        <h2>O que dizem nossos clientes</h2>
+        <div class="testimonial">
+            <img src="imagens/foto1.jpg" alt="Depoimento de Ana" class="testimonial-image">
+            <p><strong>Ana:</strong> Nunca imaginei que algo tão simples como o abacate pudesse mudar minha pele. Adeus acne!</p>
+        </div>
+        <div class="testimonial">
+            <img src="imagens/foto2.jpg" alt="Depoimento de Júlia" class="testimonial-image">
+            <p><strong>Júlia:</strong> Minha pele flácida agora tem firmeza! Estou muito feliz com os resultados.</p>
+        </div>
+        <div class="testimonial">
+            <img src="imagens/foto3.jpg" alt="Depoimento de Carla" class="testimonial-image">
+            <p><strong>Carla:</strong> As manchas sumiram em poucas semanas. Recomendo demais!</p>
+        </div>
+        <div class="testimonial">
+            <img src="imagens/foto4.jpg" alt="Depoimento de Sofia" class="testimonial-image">
+            <p><strong>Sofia:</strong> Finalmente me sinto confiante sem maquiagem. As olheiras sumiram!</p>
+        </div>
+    </section>
 
-        <!-- Final -->
-        <section id="final-section" style="display: none;">
-            <h2>Parabéns!</h2>
-            <p>Com base nas suas respostas, encontramos o melhor plano para você.</p>
-            <button class="cta-button" onclick="redirectToPlan()">Ver Meu Plano</button>
-        </section>
-    </main>
-    <script src="data.js"></script> <!-- Adicionando a chamada para o arquivo data.js -->
-    <script src="quiz.js"></script>
+    <!-- Call-to-Action -->
+    <section class="cta-section">
+        <h2>Pronto para começar sua transformação?</h2>
+        <button class="cta-button" onclick="window.location.href='quiz.html'">Sim, quero experimentar agora!</button>
+    </section>
+
+    <footer>
+        <p>© 2024 Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleWhyItWorks() {
+            const expanded = document.getElementById('expanded-why');
+            if (expanded.style.display === 'none') {
+                expanded.style.display = 'block';
+            } else {
+                expanded.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
