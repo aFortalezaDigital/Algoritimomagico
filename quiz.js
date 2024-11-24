@@ -3,10 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedPath = '';
 
     const startQuiz = () => {
-        const introduction = document.getElementById('introduction');
-        const quiz = document.getElementById('quiz');
-        introduction.style.display = 'none';
-        quiz.style.display = 'block';
+        document.getElementById('introduction').style.display = 'none';
+        document.getElementById('quiz').style.display = 'block';
         showPathSelection();
     };
 
@@ -35,58 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
-    const choosePath = (path) => {
-        selectedPath = path;
-        currentStep = 0;
-        loadQuestion();
-    };
-
-    const loadQuestion = () => {
-        const path = paths[selectedPath];
-        if (!path || currentStep >= path.length) {
-            showAnalyzing();
-            return;
-        }
-        const { question, answers } = path[currentStep];
-        const questionArea = document.getElementById('question-area');
-        questionArea.innerHTML = `
-            <h2 class="fade-in">${question}</h2>
-            ${answers.map(answer => `
-                <button class="quiz-button fade-in" onclick="answerQuestion('${answer}')">${answer}</button>
-            `).join('')}
-        `;
-        updateProgress();
-    };
-
-    const answerQuestion = (answer) => {
-        const buttons = document.querySelectorAll('.quiz-button');
-        buttons.forEach(btn => btn.classList.remove('selected'));
-        const selectedButton = Array.from(buttons).find(btn => btn.textContent === answer);
-        if (selectedButton) selectedButton.classList.add('selected');
-
-        const thankYouMessage = document.getElementById('thank-you-message');
-        thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
-        thankYouMessage.style.display = 'block';
-        setTimeout(() => {
-            currentStep++;
-            loadQuestion();
-        }, 2000);
-    };
-
-    const updateProgress = () => {
-        const path = paths[selectedPath];
-        const progressText = document.getElementById('progress-text');
-        progressText.textContent = `Pergunta ${currentStep + 1} de ${path.length}`;
-        document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
-    };
-
     const showAnalyzing = () => {
-        document.getElementById('quiz').style.display = 'none';
         const analyzingSection = document.getElementById('analyzing-section');
         analyzingSection.style.display = 'flex';
-        analyzingSection.innerHTML = `<h2>Analisando suas escolhas...</h2><p>Aguarde enquanto criamos o melhor plano para você.</p>`;
+        analyzingSection.innerHTML = `
+            <h2 class="fade-in">Analisando suas escolhas...</h2>
+            <p class="analyzing-animation">Carregando<span>.</span><span>.</span><span>.</span></p>
+        `;
         setTimeout(() => {
-            analyzingSection.innerHTML = `<h2>Definindo o melhor plano para você...</h2>`;
+            analyzingSection.innerHTML = `
+                <h2 class="fade-in">Definindo o melhor plano para você...</h2>
+                <p class="analyzing-animation">Quase pronto<span>.</span><span>.</span><span>.</span></p>
+            `;
         }, 3000);
         setTimeout(() => {
             analyzingSection.style.display = 'none';
@@ -106,15 +64,55 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         finalSection.innerHTML = `
-            <h2>Seu plano está pronto!</h2>
-            <p>Baseado em suas respostas, recomendamos:</p>
-            <blockquote>${suggestions[selectedPath]}</blockquote>
-            <p>O melhor plano que normalmente custa R$49,99 está disponível por apenas <span class="price-discount">${plan.price}</span>.</p>
-            <a href="${plan.link}" class="cta-button">Adquirir Agora</a>
+            <div class="final-plan fade-in">
+                <h2>Seu plano está pronto!</h2>
+                <p>Baseado em suas respostas, recomendamos:</p>
+                <blockquote>${suggestions[selectedPath]}</blockquote>
+                <p>O melhor plano que normalmente custa <s>R$49,99</s> está disponível por apenas <span class="price-discount">${plan.price}</span>.</p>
+                <a href="${plan.link}" class="cta-button">Adquirir Agora</a>
+            </div>
         `;
     };
 
     window.startQuiz = startQuiz;
-    window.choosePath = choosePath;
-    window.answerQuestion = answerQuestion;
+    window.choosePath = (path) => {
+        selectedPath = path;
+        currentStep = 0;
+        loadQuestion();
+    };
+    window.answerQuestion = (answer) => {
+        const buttons = document.querySelectorAll('.quiz-button');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        const selectedButton = Array.from(buttons).find(btn => btn.textContent === answer);
+        if (selectedButton) selectedButton.classList.add('selected');
+        document.getElementById('thank-you-message').textContent = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
+        setTimeout(() => {
+            currentStep++;
+            loadQuestion();
+        }, 2000);
+    };
+
+    const loadQuestion = () => {
+        const path = paths[selectedPath];
+        if (!path || currentStep >= path.length) {
+            showAnalyzing();
+            return;
+        }
+        const { question, answers } = path[currentStep];
+        const questionArea = document.getElementById('question-area');
+        questionArea.innerHTML = `
+            <h2 class="fade-in">${question}</h2>
+            ${answers.map(answer => `
+                <button class="quiz-button fade-in" onclick="answerQuestion('${answer}')">${answer}</button>
+            `).join('')}
+        `;
+        updateProgress();
+    };
+
+    const updateProgress = () => {
+        const path = paths[selectedPath];
+        const progressText = document.getElementById('progress-text');
+        progressText.textContent = `Pergunta ${currentStep + 1} de ${path.length}`;
+        document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
+    };
 });
