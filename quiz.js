@@ -9,9 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionText = document.getElementById('question-text');
     const answersContainer = document.getElementById('answers-container');
 
-    let currentPath = '';
+    let currentPath = ''; // Variável que armazenará o caminho do problema escolhido
     let currentStep = 0;
 
+    // Definição das perguntas e respostas para cada caminho
     const paths = {
         acne: [
             { question: "Com que frequência você lida com acne?", answers: ["Diariamente", "Semanalmente", "Apenas às vezes"] },
@@ -31,11 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    // Função para começar o quiz
     function startQuiz() {
         introSection.style.display = 'none';
         problemSelection.style.display = 'block';
     }
 
+    // Função para escolher o problema (Acne, Flacidez, Manchas, Olheiras)
     function choosePath(path) {
         currentPath = path;
         currentStep = 0;
@@ -44,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showQuestion();
     }
 
+    // Função para exibir a pergunta atual
     function showQuestion() {
         const path = paths[currentPath];
         const currentQuestion = path[currentStep];
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     }
 
+    // Função para tratar a resposta do usuário
     function handleAnswer() {
         thankYouMessage.textContent = "Obrigado por sua resposta!";
         thankYouMessage.style.display = 'block';
@@ -73,12 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     }
 
+    // Função para atualizar a barra de progresso
     function updateProgress() {
         const path = paths[currentPath];
         const progress = ((currentStep + 1) / path.length) * 100;
         progressBar.style.width = `${progress}%`;
     }
 
+    // Função para finalizar o quiz
     function finishQuiz() {
         questionSection.style.display = 'none';
         analyzingSection.style.display = 'block';
@@ -88,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
+    // Função para redirecionar para o plano de acordo com o problema escolhido
     function redirectToPlan() {
         const planLinks = {
             acne: "https://pay.kiwify.com.br/VhFdNES",
@@ -95,9 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
             manchas: "https://pay.kiwify.com.br/LPEpNn0",
             olheiras: "https://pay.kiwify.com.br/LR91Ag6"
         };
-        window.location.href = planLinks[currentPath];
+        window.location.href = planLinks[currentPath];  // Redireciona para o link do plano
     }
 
+    // Disponibilizando a função globalmente para o HTML
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
 });
