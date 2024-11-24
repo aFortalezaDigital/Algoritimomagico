@@ -1,95 +1,107 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const introSection = document.getElementById('intro-section');
-    const problemSelection = document.getElementById('problem-selection');
-    const questionSection = document.getElementById('question-section');
-    const progressBar = document.getElementById('progress-bar');
-    const thankYouMessage = document.getElementById('thank-you-message');
-    const analyzingSection = document.getElementById('analyzing-section');
-    const finalSection = document.getElementById('final-section');
-    const questionText = document.getElementById('question-text');
-    const answersContainer = document.getElementById('answers-container');
-
-    let currentPath = ''; // Variável que armazenará o caminho do problema escolhido
     let currentStep = 0;
+    let selectedPath = '';
 
-    // Acessando os dados do 'data.js'
-    const paths = window.quizData; // 'quizData' foi exportado do 'data.js'
+    const startQuiz = () => {
+        document.getElementById('introduction').style.display = 'none';
+        document.getElementById('quiz').style.display = 'block';
+        showPathSelection();
+    };
 
-    // Função para começar o quiz
-    function startQuiz() {
-        introSection.style.display = 'none';
-        problemSelection.style.display = 'block';
-    }
+    const showPathSelection = () => {
+        const questionArea = document.getElementById('question-area');
+        questionArea.innerHTML = `
+            <h2>Escolha o problema que deseja resolver:</h2>
+            <div class="path-selection">
+                <div class="path-option" onclick="choosePath('acne')">
+                    <img src="imagens/acne.jpg" alt="Acne" class="path-image">
+                    <p>Acne/Espinhas</p>
+                </div>
+                <div class="path-option" onclick="choosePath('flacidez')">
+                    <img src="imagens/flacidez.jpg" alt="Flacidez" class="path-image">
+                    <p>Pele Flácida</p>
+                </div>
+                <div class="path-option" onclick="choosePath('manchas')">
+                    <img src="imagens/manchas.jpg" alt="Manchas" class="path-image">
+                    <p>Manchas na Pele</p>
+                </div>
+                <div class="path-option" onclick="choosePath('olheiras')">
+                    <img src="imagens/olheiras.jpg" alt="Olheiras" class="path-image">
+                    <p>Olheiras</p>
+                </div>
+            </div>
+        `;
+    };
 
-    // Função para escolher o problema (Acne, Flacidez, Manchas, Olheiras)
-    function choosePath(path) {
-        currentPath = path;
+    const choosePath = (path) => {
+        selectedPath = path;
         currentStep = 0;
-        problemSelection.style.display = 'none';
-        questionSection.style.display = 'block';
-        showQuestion();
-    }
+        loadQuestion();
+    };
 
-    // Função para exibir a pergunta atual
-    function showQuestion() {
-        const path = paths[currentPath];
-        const currentQuestion = path[currentStep];
-        questionText.textContent = currentQuestion.question;
-        answersContainer.innerHTML = ''; // Limpa as respostas anteriores
-        currentQuestion.answers.forEach(answer => {
-            const button = document.createElement('button');
-            button.textContent = answer;
-            button.classList.add('quiz-button');
-            button.onclick = handleAnswer;
-            answersContainer.appendChild(button);
-        });
+    const loadQuestion = () => {
+        const path = paths[selectedPath];
+        if (!path) {
+            console.error(`Caminho "${selectedPath}" não encontrado.`);
+            return;
+        }
+        if (currentStep >= path.length) {
+            showAnalyzing();
+            return;
+        }
+        const { question, answers } = path[currentStep];
+        const questionArea = document.getElementById('question-area');
+        questionArea.innerHTML = `
+            <h2>${question}</h2>
+            ${answers.map(answer => `
+                <button class="quiz-button" onclick="answerQuestion('${answer}')">${answer}</button>
+            `).join('')}
+        `;
         updateProgress();
-    }
+    };
 
-    // Função para tratar a resposta do usuário
-    function handleAnswer() {
-        thankYouMessage.textContent = "Obrigado por sua resposta!";
+    const answerQuestion = (answer) => {
+        const thankYouMessage = document.getElementById('thank-you-message');
+        thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
         thankYouMessage.style.display = 'block';
         setTimeout(() => {
             currentStep++;
-            if (currentStep < paths[currentPath].length) {
-                thankYouMessage.style.display = 'none';
-                showQuestion();
-            } else {
-                finishQuiz();
-            }
-        }, 1500);
-    }
+            loadQuestion();
+        }, 2000);
+    };
 
-    // Função para atualizar a barra de progresso
-    function updateProgress() {
-        const path = paths[currentPath];
-        const progress = ((currentStep + 1) / path.length) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
+    const updateProgress = () => {
+        const path = paths[selectedPath];
+        if (path) {
+            document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
+        }
+    };
 
-    // Função para finalizar o quiz
-    function finishQuiz() {
-        questionSection.style.display = 'none';
-        analyzingSection.style.display = 'block';
+    const showAnalyzing = () => {
+        document.getElementById('quiz').style.display = 'none';
+        const analyzingSection = document.getElementById('analyzing-section');
+        analyzingSection.style.display = 'flex';
+        analyzingSection.innerHTML = `<h2>Analisando suas escolhas...</h2><p>Aguarde enquanto criamos o melhor plano para você.</p>`;
+        setTimeout(() => {
+            analyzingSection.innerHTML = `<h2>Definindo o melhor plano para você...</h2>`;
+        }, 3000);
         setTimeout(() => {
             analyzingSection.style.display = 'none';
-            finalSection.style.display = 'block';
-        }, 4000);
-    }
+            showFinalPlan();
+        }, 7000);
+    };
 
-    // Função para redirecionar para o plano de acordo com o problema escolhido
-    function redirectToPlan() {
-        const planLinks = {
-            acne: "https://pay.kiwify.com.br/VhFdNES",
-            flacidez: "https://pay.kiwify.com.br/AuptMRd",
-            manchas: "https://pay.kiwify.com.br/LPEpNn0",
-            olheiras: "https://pay.kiwify.com.br/LR91Ag6"
-        };
-        window.location.href = planLinks[currentPath];  // Redireciona para o link do plano
-    }
+    const showFinalPlan = () => {
+        const finalSection = document.getElementById('final-section');
+        finalSection.style.display = 'block';
+        const plan = ebooks[selectedPath];
+        finalSection.innerHTML = `
+            <h2>Seu plano está pronto!</h2>
+            <p>O melhor plano que normalmente custa R$49,99 está disponível por apenas <span class="price-discount">${plan.price}</span>.</p>
+            <a href="${plan.link}" class="cta-button">Adquirir Agora</a>
+        `;
+    };
 
-    // Disponibilizando as funções para o HTML
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
 });
