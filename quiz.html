@@ -1,69 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Diagnóstico</title>
+    <title>Quiz de Tratamento</title>
     <link rel="stylesheet" href="quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="quiz-section">
-        <!-- Introdução -->
-        <section id="intro-section">
-            <h1>Descubra o Melhor Tratamento para Sua Pele</h1>
-            <p>Responda algumas perguntas simples e diremos qual solução é perfeita para você!</p>
-            <button class="start-button" onclick="startQuiz()">Começar Agora</button>
-        </section>
+    <div id="introduction" class="quiz-section">
+        <h1>Descubra o Melhor Tratamento para Você</h1>
+        <p>Responda ao nosso quiz rápido e receba um plano personalizado.</p>
+        <button class="start-button" onclick="startQuiz()">Começar</button>
+    </div>
 
-        <!-- Escolha do problema -->
-        <section id="problem-selection" style="display: none;">
-            <h2>Qual problema você gostaria de resolver?</h2>
-            <div id="problem-options" class="path-selection">
-                <div class="path-option" onclick="choosePath('acne')">
-                    <img src="imagens/acne.jpg" alt="Acne" class="path-image">
-                    <p>Acne/Espinhas</p>
-                </div>
-                <div class="path-option" onclick="choosePath('flacidez')">
-                    <img src="imagens/flacidez.jpg" alt="Pele Flácida" class="path-image">
-                    <p>Pele Flácida</p>
-                </div>
-                <div class="path-option" onclick="choosePath('manchas')">
-                    <img src="imagens/manchas.jpg" alt="Manchas na Pele" class="path-image">
-                    <p>Manchas na Pele</p>
-                </div>
-                <div class="path-option" onclick="choosePath('olheiras')">
-                    <img src="imagens/olheiras.jpg" alt="Olheiras" class="path-image">
-                    <p>Olheiras</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Perguntas -->
-        <section id="question-section" style="display: none;">
-            <h2 id="question-text"></h2>
-            <div id="answers-container" class="quiz-options"></div>
-            <div id="thank-you-message" style="display: none;"></div>
-        </section>
-
-        <!-- Barra de progresso -->
-        <div id="progress-section" style="display: block;">
-            <div id="progress-bar"></div>
+    <div id="quiz" class="quiz-section" style="display: none;">
+        <div class="progress-container">
+            <div id="progress" class="progress-bar"></div>
         </div>
+        <div id="question-area"></div>
+        <div id="thank-you-message" style="display: none;"></div>
+    </div>
 
-        <!-- Analisando -->
-        <section id="analyzing-section" style="display: none;">
-            <h2>Analisando suas respostas...</h2>
-            <p>Aguarde enquanto definimos o melhor plano para você.</p>
-        </section>
+    <div id="analyzing-section" class="quiz-section" style="display: none;">
+        <h2>Analisando suas escolhas...</h2>
+        <p>Aguarde enquanto criamos o melhor plano para você.</p>
+    </div>
 
-        <!-- Final -->
-        <section id="final-section" style="display: none;">
-            <h2>Parabéns!</h2>
-            <p>Com base nas suas respostas, encontramos o melhor plano para você.</p>
-            <button class="cta-button" onclick="redirectToPlan()">Ver Meu Plano</button>
-        </section>
-    </main>
-    <script src="data.js"></script> <!-- Carregando os dados do data.js -->
-    <script src="quiz.js"></script> <!-- Carregando o script do quiz -->
+    <div id="final-section" class="quiz-section" style="display: none;"></div>
+
+    <script src="data.js"></script>
+    <script src="quiz.js"></script>
 </body>
 </html>
