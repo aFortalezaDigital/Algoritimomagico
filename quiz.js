@@ -2,14 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 0;
     let selectedPath = '';
 
+    // Função para começar o quiz
     const startQuiz = () => {
-        document.getElementById('introduction').style.display = 'none';
-        document.getElementById('quiz').style.display = 'block';
+        const introduction = document.getElementById('introduction');
+        const quiz = document.getElementById('quiz');
+
+        if (!introduction || !quiz) {
+            console.error("Elementos 'introduction' ou 'quiz' não encontrados.");
+            return;
+        }
+
+        introduction.style.display = 'none';
+        quiz.style.display = 'block';
         showPathSelection();
     };
 
+    // Exibir opções de problema
     const showPathSelection = () => {
         const questionArea = document.getElementById('question-area');
+        if (!questionArea) {
+            console.error("Elemento 'question-area' não encontrado.");
+            return;
+        }
+
         questionArea.innerHTML = `
             <h2>Escolha o problema que deseja resolver:</h2>
             <div class="path-selection">
@@ -33,12 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
+    // Escolher o problema
     const choosePath = (path) => {
         selectedPath = path;
         currentStep = 0;
         loadQuestion();
     };
 
+    // Carregar perguntas
     const loadQuestion = () => {
         const path = paths[selectedPath];
         if (!path) {
@@ -51,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const { question, answers } = path[currentStep];
         const questionArea = document.getElementById('question-area');
+        if (!questionArea) {
+            console.error("Elemento 'question-area' não encontrado.");
+            return;
+        }
+
         questionArea.innerHTML = `
             <h2>${question}</h2>
             ${answers.map(answer => `
@@ -60,16 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     };
 
-    const answerQuestion = (answer) => {
-        const thankYouMessage = document.getElementById('thank-you-message');
-        thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
-        thankYouMessage.style.display = 'block';
-        setTimeout(() => {
-            currentStep++;
-            loadQuestion();
-        }, 2000);
-    };
-
+    // Atualizar barra de progresso
     const updateProgress = () => {
         const path = paths[selectedPath];
         if (path) {
@@ -77,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Mostrar a análise
     const showAnalyzing = () => {
         document.getElementById('quiz').style.display = 'none';
         const analyzingSection = document.getElementById('analyzing-section');
@@ -91,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 7000);
     };
 
+    // Mostrar plano final
     const showFinalPlan = () => {
         const finalSection = document.getElementById('final-section');
         finalSection.style.display = 'block';
@@ -102,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
+    // Adicionar funções ao escopo global
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
 });
