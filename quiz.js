@@ -12,25 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPath = ''; // Variável que armazenará o caminho do problema escolhido
     let currentStep = 0;
 
-    // Definição das perguntas e respostas para cada caminho
-    const paths = {
-        acne: [
-            { question: "Com que frequência você lida com acne?", answers: ["Diariamente", "Semanalmente", "Apenas às vezes"] },
-            { question: "Qual seu maior objetivo?", answers: ["Reduzir inflamação", "Prevenir crises", "Eliminar completamente"] }
-        ],
-        flacidez: [
-            { question: "Em qual área sente mais flacidez?", answers: ["Rosto", "Pescoço", "Outros"] },
-            { question: "Você já tentou tratamentos antes?", answers: ["Sim", "Não"] }
-        ],
-        manchas: [
-            { question: "Qual tipo de mancha mais te incomoda?", answers: ["Solares", "De acne", "De idade"] },
-            { question: "Você usa protetor solar regularmente?", answers: ["Sim", "Não"] }
-        ],
-        olheiras: [
-            { question: "Qual o tipo de olheira?", answers: ["Genética", "Fadiga", "Pigmentação"] },
-            { question: "Já tentou algum tratamento?", answers: ["Sim", "Não"] }
-        ]
-    };
+    // Acessando os dados do 'data.js'
+    const paths = window.quizData; // 'quizData' foi exportado do 'data.js'
 
     // Função para começar o quiz
     function startQuiz() {
@@ -52,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const path = paths[currentPath];
         const currentQuestion = path[currentStep];
         questionText.textContent = currentQuestion.question;
-        answersContainer.innerHTML = '';
+        answersContainer.innerHTML = ''; // Limpa as respostas anteriores
         currentQuestion.answers.forEach(answer => {
             const button = document.createElement('button');
             button.textContent = answer;
@@ -106,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = planLinks[currentPath];  // Redireciona para o link do plano
     }
 
-    // Disponibilizando a função globalmente para o HTML
+    // Disponibilizando as funções para o HTML
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
 });
