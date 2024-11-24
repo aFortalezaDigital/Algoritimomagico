@@ -82,6 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     };
 
+    // Responder pergunta
+    const answerQuestion = (answer) => {
+        const thankYouMessage = document.getElementById('thank-you-message');
+        if (!thankYouMessage) {
+            console.error("Elemento 'thank-you-message' não encontrado.");
+            return;
+        }
+
+        thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
+        thankYouMessage.style.display = 'block';
+        setTimeout(() => {
+            currentStep++;
+            loadQuestion();
+        }, 2000);
+    };
+
     // Atualizar barra de progresso
     const updateProgress = () => {
         const path = paths[selectedPath];
@@ -120,4 +136,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adicionar funções ao escopo global
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
+    window.answerQuestion = answerQuestion; // Torna a função acessível globalmente
 });
