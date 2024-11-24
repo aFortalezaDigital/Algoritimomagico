@@ -2,32 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 0;
     let selectedPath = '';
 
-    // Função para começar o quiz
     const startQuiz = () => {
         const introduction = document.getElementById('introduction');
         const quiz = document.getElementById('quiz');
-
-        if (!introduction || !quiz) {
-            console.error("Elementos 'introduction' ou 'quiz' não encontrados.");
-            return;
-        }
-
         introduction.style.display = 'none';
         quiz.style.display = 'block';
         showPathSelection();
     };
 
-    // Exibir opções de problema
     const showPathSelection = () => {
         const questionArea = document.getElementById('question-area');
-        if (!questionArea) {
-            console.error("Elemento 'question-area' não encontrado.");
-            return;
-        }
-
         questionArea.innerHTML = `
-            <h2>Escolha o problema que deseja resolver:</h2>
-            <div class="path-selection">
+            <h2 class="fade-in">Escolha o problema que deseja resolver:</h2>
+            <div class="path-selection fade-in">
                 <div class="path-option" onclick="choosePath('acne')">
                     <img src="imagens/acne.jpg" alt="Acne" class="path-image">
                     <p>Acne/Espinhas</p>
@@ -48,48 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
-    // Escolher o problema
     const choosePath = (path) => {
         selectedPath = path;
         currentStep = 0;
         loadQuestion();
     };
 
-    // Carregar perguntas
     const loadQuestion = () => {
         const path = paths[selectedPath];
-        if (!path) {
-            console.error(`Caminho "${selectedPath}" não encontrado.`);
-            return;
-        }
-        if (currentStep >= path.length) {
+        if (!path || currentStep >= path.length) {
             showAnalyzing();
             return;
         }
         const { question, answers } = path[currentStep];
         const questionArea = document.getElementById('question-area');
-        if (!questionArea) {
-            console.error("Elemento 'question-area' não encontrado.");
-            return;
-        }
-
         questionArea.innerHTML = `
-            <h2>${question}</h2>
+            <h2 class="fade-in">${question}</h2>
             ${answers.map(answer => `
-                <button class="quiz-button" onclick="answerQuestion('${answer}')">${answer}</button>
+                <button class="quiz-button fade-in" onclick="answerQuestion('${answer}')">${answer}</button>
             `).join('')}
         `;
         updateProgress();
     };
 
-    // Responder pergunta
     const answerQuestion = (answer) => {
-        const thankYouMessage = document.getElementById('thank-you-message');
-        if (!thankYouMessage) {
-            console.error("Elemento 'thank-you-message' não encontrado.");
-            return;
-        }
+        const buttons = document.querySelectorAll('.quiz-button');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        const selectedButton = Array.from(buttons).find(btn => btn.textContent === answer);
+        if (selectedButton) selectedButton.classList.add('selected');
 
+        const thankYouMessage = document.getElementById('thank-you-message');
         thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
         thankYouMessage.style.display = 'block';
         setTimeout(() => {
@@ -98,15 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     };
 
-    // Atualizar barra de progresso
     const updateProgress = () => {
         const path = paths[selectedPath];
-        if (path) {
-            document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
-        }
+        const progressText = document.getElementById('progress-text');
+        progressText.textContent = `Pergunta ${currentStep + 1} de ${path.length}`;
+        document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
     };
 
-    // Mostrar a análise
     const showAnalyzing = () => {
         document.getElementById('quiz').style.display = 'none';
         const analyzingSection = document.getElementById('analyzing-section');
@@ -121,20 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 7000);
     };
 
-    // Mostrar plano final
     const showFinalPlan = () => {
         const finalSection = document.getElementById('final-section');
         finalSection.style.display = 'block';
         const plan = ebooks[selectedPath];
+        const suggestions = {
+            acne: "Evite alimentos gordurosos e mantenha a pele limpa.",
+            flacidez: "Adicione colágeno na sua dieta e pratique exercícios.",
+            manchas: "Use protetor solar diariamente para evitar novas manchas.",
+            olheiras: "Durma bem e experimente compressas geladas."
+        };
+
         finalSection.innerHTML = `
             <h2>Seu plano está pronto!</h2>
+            <p>Baseado em suas respostas, recomendamos:</p>
+            <blockquote>${suggestions[selectedPath]}</blockquote>
             <p>O melhor plano que normalmente custa R$49,99 está disponível por apenas <span class="price-discount">${plan.price}</span>.</p>
             <a href="${plan.link}" class="cta-button">Adquirir Agora</a>
         `;
     };
 
-    // Adicionar funções ao escopo global
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
-    window.answerQuestion = answerQuestion; // Torna a função acessível globalmente
+    window.answerQuestion = answerQuestion;
 });
