@@ -101,3 +101,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.startQuiz = startQuiz;
     window.choosePath = choosePath;
 });
+ 
