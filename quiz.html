@@ -7,34 +7,34 @@
     <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <main>
+    <main class="quiz-section">
         <!-- Introdução -->
         <section id="intro-section">
             <h1>Descubra o Melhor Tratamento para Sua Pele</h1>
             <p>Responda algumas perguntas simples e diremos qual solução é perfeita para você!</p>
-            <button class="quiz-button" onclick="startQuiz()">Começar Agora</button>
+            <button class="start-button" onclick="startQuiz()">Começar Agora</button>
         </section>
 
         <!-- Escolha do problema -->
         <section id="problem-selection" style="display: none;">
             <h2>Qual problema você gostaria de resolver?</h2>
-            <div id="problem-options" class="quiz-options">
-                <button class="quiz-button blue" onclick="choosePath('acne')">
-                    <img src="imagens/acne.jpg" alt="Acne" class="problem-image">
-                    Acne/Espinhas
-                </button>
-                <button class="quiz-button blue" onclick="choosePath('flacidez')">
-                    <img src="imagens/flacidez.jpg" alt="Pele Flácida" class="problem-image">
-                    Pele Flácida
-                </button>
-                <button class="quiz-button blue" onclick="choosePath('manchas')">
-                    <img src="imagens/manchas.jpg" alt="Manchas na Pele" class="problem-image">
-                    Manchas na Pele
-                </button>
-                <button class="quiz-button blue" onclick="choosePath('olheiras')">
-                    <img src="imagens/olheiras.jpg" alt="Olheiras" class="problem-image">
-                    Olheiras
-                </button>
+            <div id="problem-options" class="path-selection">
+                <div class="path-option" onclick="choosePath('acne')">
+                    <img src="imagens/acne.jpg" alt="Acne" class="path-image">
+                    <p>Acne/Espinhas</p>
+                </div>
+                <div class="path-option" onclick="choosePath('flacidez')">
+                    <img src="imagens/flacidez.jpg" alt="Pele Flácida" class="path-image">
+                    <p>Pele Flácida</p>
+                </div>
+                <div class="path-option" onclick="choosePath('manchas')">
+                    <img src="imagens/manchas.jpg" alt="Manchas na Pele" class="path-image">
+                    <p>Manchas na Pele</p>
+                </div>
+                <div class="path-option" onclick="choosePath('olheiras')">
+                    <img src="imagens/olheiras.jpg" alt="Olheiras" class="path-image">
+                    <p>Olheiras</p>
+                </div>
             </div>
         </section>
 
