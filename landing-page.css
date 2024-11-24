@@ -1,0 +1,291 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabeçalho da Landing Page */
+.landing-header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #4CAF50, #2E7D32); /* Gradiente suave de verde */
+    color: white;
+}
+
+.landing-header h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.landing-header p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.cta-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 70%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.cta-button:hover {
+    background-color: #1976D2;
+}
+
+/* Seção de Depoimentos */
+.testimonials {
+    text-align: center;
+    padding: 30px;
+    background: #f0f8ff; /* Cor suave para o fundo dos depoimentos */
+    border-radius: 10px;  /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+.testimonials h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4CAF50; /* Cor verde que combina com o tema da landing page */
+}
+
+.testimonial-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.testimonial {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #ffffff;  /* Cor de fundo das caixas de depoimentos */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    text-align: left;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.testimonial:hover {
+    transform: translateY(-10px); /* Efeito de hover para interação */
+}
+
+.testimonial-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-text {
+    flex: 1;
+}
+
+.testimonial-text p {
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.testimonial-text span {
+    font-size: 14px;
+    font-style: italic;
+    color: #888;
+}
+
+/* Seção de Benefícios com fundo verde */
+.benefits {
+    padding: 30px;
+    background-color: #4CAF50;  /* Cor verde */
+    color: white; /* Texto branco */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.benefits h2 {
+    font-size: 28px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.benefits p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits li {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.benefits li strong {
+    color: #FFEB3B;  /* Destaque em amarelo */
+}
+
+.benefits p:last-child {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Estilos do botão Expandir */
+.expand-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px;
+}
+
+.expand-btn:hover {
+    background-color: #1976D2;
+}
+
+/* Conteúdo Expansível */
+.expandable-content {
+    display: none;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.expandable-content ul {
+    margin-top: 20px;
+}
+
+.expandable-content p {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Call to Action (Pronto para Começar) */
+.cta-container {
+    text-align: center;
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-container h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 70%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.cta-button:hover {
+    background-color: #1976D2;
+}
+
+/* Footer */
+.footer {
+    background-color: #f9f9f9;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .landing-header h1 {
+        font-size: 24px;
+    }
+
+    .cta-button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .testimonials h2, .benefits h2 {
+        font-size: 20px;
+    }
+
+    .cta-container h3 {
+        font-size: 18px;
+    }
+
+    .testimonial {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .testimonial-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .testimonial-text p {
+        font-size: 14px;
+    }
+}
