@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const thankYouMessage = document.getElementById('thank-you-message');
         thankYouMessage.innerHTML = `Obrigado por sua resposta: "${answer}"! Vamos para a próxima pergunta...`;
         thankYouMessage.style.display = 'block';
+
+        // Tempo ajustado para 1 segundo
         setTimeout(() => {
             currentStep++;
             loadQuestion();
