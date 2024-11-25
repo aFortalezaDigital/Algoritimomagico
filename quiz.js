@@ -63,4 +63,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateProgress = () => {
         const path = paths[selectedPath];
-        const progressText = document.getElementById('progress-text
+        const progressText = document.getElementById('progress-text');
+        progressText.textContent = `Pergunta ${currentStep + 1} de ${path.length}`;
+        document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
+    };
+
+    const showAnalyzing = () => {
+        document.getElementById('quiz').style.display = 'none';
+        const analyzingSection = document.getElementById('analyzing-section');
+        analyzingSection.style.display = 'flex';
+
+        setTimeout(() => {
+            analyzingSection.style.display = 'none';
+            showFinalPlan();
+        }, 3000); // Mostra análise por 3 segundos
+    };
+
+    const showFinalPlan = () => {
+        const finalSection = document.getElementById('final-section');
+        finalSection.style.display = 'flex';
+    };
+
+    window.startQuiz = startQuiz;
+    window.choosePath = (path) => {
+        selectedPath = path;
+        currentStep = 0;
+        loadQuestion();
+    };
+    window.answerQuestion = answerQuestion;
+});
