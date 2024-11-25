@@ -61,13 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); // Delay de 1 segundo
     };
 
-    const updateProgress = () => {
-        const path = paths[selectedPath];
-        const progressText = document.getElementById('progress-text');
-        progressText.textContent = `Pergunta ${currentStep + 1} de ${path.length}`;
-        document.getElementById('progress').style.width = `${((currentStep + 1) / path.length) * 100}%`;
-    };
-
     const showAnalyzing = () => {
         document.getElementById('quiz').style.display = 'none';
         const analyzingSection = document.getElementById('analyzing-section');
